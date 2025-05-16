@@ -1,0 +1,52 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
+        <h4 class="mb-4">Registra tu nueva carta</h4>
+        <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="pokemonName" class="form-label">Pokemon</label>
+                <input type="text" class="form-control" id="pokemonName" aria-describedby="pokemonName" formControlName="pokemonName">
+            </div>
+
+            <div class="mb-3">
+                <label for="pokemonType" class="form-label">Tipo</label>
+                <select name="pokemonType" id="pokemonType" class="form-select" formControlName="pokemonType">
+                    <option value="fuego">Fuego</option>
+                    <option value="agua">Agua</option>
+                    <option value="planta">Planta</option>
+                    <option value="electrico">Electrico</option>
+                    <option value="volador">Volador</option>
+                    <option value="normal">Normal</option>
+                    <option value="lucha">Lucha</option>
+                    <option value="psiquico">Psiquico</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="hp" class="form-label">Puntos de Salud</label>
+                <input type="number" class="form-control" id="hp" aria-describedby="hp" min="3" max="10" formControlName="hp">
+            </div>
+
+            <div class="mb-3">
+                <label for="damage" class="form-label">Daño</label>
+                <input type="number" class="form-control" id="attack" aria-describedby="damage" min="3" max="10" formControlName="damage">
+            </div>
+
+            <div class="mb-3">
+                <label for="defense" class="form-label">Defensa</label>
+                <input type="number" class="form-control" id="defense" aria-describedby="defense" min="3" max="10" formControlName="defense">
+            </div>
+
+            <div class="mb-3">
+                <label for="ammo" class="form-label">Munición</label>
+                <input type="number" class="form-control" id="ammo" aria-describedby="ammo" min="3" max="10" formControlName="ammo">
+            </div>
+            
+            <div class="mb-3">
+                <label for="img" class="form-label">Imágen</label>
+                <input class="form-control" type="file" id="img" accept="image/*" formControlName="img">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
