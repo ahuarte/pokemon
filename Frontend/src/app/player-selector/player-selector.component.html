@@ -4,16 +4,40 @@
 
     </div>
     <div class="row mx-0 d-flex justify-content-between">
-        <div class="col">
+        <!-- JUGADOR 1 -->
+        <div class="col-4">
             <label for="player1">Jugador 1</label>
-            <select class="form-select" aria-label="Default select example">
+            <mat-select placeholder="Selecciona un jugador">
                 @for(player of playerList; track $index){
-                    <option value="{{ player.id }}"><img src="https://localhost:7214/api/Values/jugadores/{{ player.avatar }}" alt=""> {{player.name}}</option>
+                    <mat-option [value]="player.id">
+                        <img
+                        [src]="'https://localhost:7214/api/Values/jugadores/' + player.avatar"
+                        alt="{{ player.name }}"
+                        style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;"
+                        />
+                        {{ player.name }}
+                    </mat-option>
                 }
-            </select>
+            </mat-select>
         </div>
-        <div class="col">
 
+        <div class="col-4 d-flex justify-content-center">
+            <img src="vs.webp" alt="" style="width: 100px; height: 100px;"/>
+        </div>
+
+        <!-- JUGADOR 2 -->
+        <div class="col-4">
+            <label for="player1">Jugador 2</label>
+            <mat-select placeholder="Selecciona un jugador">
+                @for(player of playerList; track $index){
+                <mat-option [value]="player.id">
+                    <img [src]="'https://localhost:7214/api/Values/jugadores/' + player.avatar" alt="{{ player.name }}"
+                        style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;" />
+                    {{ player.name }}
+                </mat-option>
+                }
+            </mat-select>
         </div>
     </div>
 </div>
+
