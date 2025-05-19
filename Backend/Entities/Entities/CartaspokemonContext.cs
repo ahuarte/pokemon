@@ -6,9 +6,6 @@ namespace Entities.Entities;
 
 public partial class CartaspokemonContext : DbContext
 {
-    public CartaspokemonContext()
-    {
-    }
 
     public CartaspokemonContext(DbContextOptions<CartaspokemonContext> options)
         : base(options)

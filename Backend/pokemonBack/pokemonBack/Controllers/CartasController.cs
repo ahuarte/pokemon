@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Entities.Dto;
 using Pokemon.Services;
+using Entities.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,9 +12,9 @@ namespace pokemonBack.Controllers
     public class CartasController : ControllerBase
     {
         public CartasService _cartasService;
-        public CartasController()
+        public CartasController(CartaspokemonContext context)
         {
-            _cartasService = new CartasService();
+            _cartasService = new CartasService(context);
         }
 
         // GET: api/<ValuesController>

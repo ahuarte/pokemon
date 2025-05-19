@@ -11,10 +11,6 @@ namespace Pokemon.Repositorys
         {
             _context = context;
         }
-        public CartasRepository() 
-        {
-            _context = new CartaspokemonContext();
-        }
         public List<CartaDto> GetCartas()
         {
             return _context.Carta.Select(c=>new CartaDto

@@ -1,4 +1,5 @@
 ﻿using Entities.Dto;
+using Entities.Entities;
 using Pokemon.Repositorys;
 
 namespace Pokemon.Services
@@ -6,13 +7,14 @@ namespace Pokemon.Services
   public class CartasService
   {
         private readonly CartasRepository _CartasRepository;
+        private readonly CartaspokemonContext _context;
         public CartasService(CartasRepository cartasRepository)
         {
             _CartasRepository = cartasRepository;
         }
-        public CartasService()
+        public CartasService(CartaspokemonContext context)
         {
-            _CartasRepository = new CartasRepository();
+            _CartasRepository = new CartasRepository(context);
         }
         public List<CartaDto> GetCartas()
         {

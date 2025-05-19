@@ -4,6 +4,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("Default");
+
+// Registrar el DbContext con la cadena de conexión
+builder.Services.AddDbContext<CartaspokemonContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -20,11 +25,7 @@ builder.Services.AddCors(options =>
 });
 
 // Obtener la cadena de conexión
-var connectionString = builder.Configuration.GetConnectionString("Default");
 
-// Registrar el DbContext con la cadena de conexión
-builder.Services.AddDbContext<CartaspokemonContext>(options =>
-    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 app.UseCors("AllowSpecificOrigin");
