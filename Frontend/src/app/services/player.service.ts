@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PlayerService {
-  route: string = 'https://localhost:7214/api/Jugadores'; 
+  route: string = 'https://localhost:7214/api/Jugador'; 
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +16,7 @@ export class PlayerService {
   }
 
   postPlayer(player: Player): Observable<Player> {
+    console.log('Player created successfully', player);
     return this.http.post<Player>(this.route, player);
   }
 }

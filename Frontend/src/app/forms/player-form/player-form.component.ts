@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-player-form',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class PlayerFormComponent {
   playerForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private playerService: PlayerService) { }
 
   ngOnInit() {
     this.playerForm = this.fb.group({
@@ -28,7 +29,14 @@ export class PlayerFormComponent {
         avatar: this.playerForm.value.avatar
       };
 
-      console.log('Player created successfully', player);
+      this.playerService.postPlayer(player).subscribe(
+        (response) => {
+          console.log('Player created successfully', response);  
+        },
+        (error) => {
+          console.error('Error creating player', error);  
+        }
+      );
     }
   }
 
