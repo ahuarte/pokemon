@@ -97,7 +97,7 @@
             
             <div class="mb-3">
                 <label for="img" class="form-label">Imágen</label>
-                <input class="form-control" type="file" id="img" accept="image/*" formControlName="img">
+                <input class="form-control" type="file" id="img" accept="image/*" formControlName="img"  (change)="onFileChange($event)" >
             </div>
 
             <button type="submit" class="btn btn-primary">Guardar</button>

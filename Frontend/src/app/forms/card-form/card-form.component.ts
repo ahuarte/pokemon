@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CardService } from '../../services/card.service';
 import { Card } from '../../model/card';
+import { ImageService } from '../../services/image.service';
 
 @Component({
   selector: 'app-card-form',
@@ -11,8 +12,9 @@ import { Card } from '../../model/card';
 })
 export class CardFormComponent {
   cardForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private cardService: CardService) { }
+  constructor(private fb: FormBuilder, private cardService: CardService, private imageService: ImageService) { }
 
   ngOnInit() {
     this.cardForm = this.fb.group({
@@ -27,6 +29,18 @@ export class CardFormComponent {
   }
 
   onSubmit() {
+    this.addCard();
+  }
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
+  addCard() {
+    //Creamos una carta auxiliar 
     if(this.cardForm.valid){
       const card: Card = {
         id: 0,
@@ -36,14 +50,35 @@ export class CardFormComponent {
         attack: this.cardForm.value.damage,
         block: this.cardForm.value.defense,
         ammo: this.cardForm.value.ammo,
-        image: this.cardForm.value.img
+        image: this.cardForm.value.img,
       };
 
-      this.cardService.postCard(card).subscribe(response => {
-        console.log('Card created successfully', response);
+      // Enviamos la carta al servicio
+      this.cardService.postCard(card).subscribe((response: number) => {
+        
+        this.uploadImage(response);
+
       }, error => {
         console.error('Error creating card', error);
       });
     }
   }
+
+  uploadImage(response: number){
+    const formData = new FormData();
+        
+    // Si se ha añadido una imagen, la subimos y asociamos a la carta creada
+    if (this.selectedFile) {
+      formData.append('Imagen', this.selectedFile); // nombre exacto 'Imagen' (case-sensitive)
+      formData.append('IdPokemon', response.toString());
+
+      this.imageService.uploadImage(formData).subscribe(response => {
+        console.log('Image uploaded successfully', response);
+
+      }, error => {
+        console.error('Error uploading image', error);
+      });
+    }
+  }
 }
+

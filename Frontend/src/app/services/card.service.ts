@@ -18,7 +18,7 @@ export class CardService {
     return this.http.get<Card[]>(this.route);
   }
 
-  postCard(card: Card): Observable<Card> {
-    return this.http.post<Card>(this.route, card);
+  postCard(card: Card): Observable<number> {
+    return this.http.post<number>(this.route, card);
   }
 }
