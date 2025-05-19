@@ -14,7 +14,7 @@
             
             <div class="mb-3">
                 <label for="avatar" class="form-label">Avatar</label>
-                <input class="form-control" type="file" id="avatar" accept="image/*" formControlName="avatar">
+                <input class="form-control" type="file" id="avatar" accept="image/*" formControlName="avatar" (change)="onFileChange($event)">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

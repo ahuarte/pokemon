@@ -60,8 +60,8 @@ export class PlayerFormComponent {
 
     // Si se ha añadido una imagen, la subimos y asociamos a la carta creada
     if (this.selectedFile) {
-      formData.append('Avatar', this.selectedFile); // nombre exacto 'Imagen' (case-sensitive)
-      formData.append('IdPlayer', response.toString());
+      formData.append('Imagen', this.selectedFile); // nombre exacto 'Imagen' (case-sensitive)
+      formData.append('idPokemon', response.toString());
 
       this.imageService.uploadAvatar(formData).subscribe(response => {
         console.log('Avatar uploaded successfully', response);
