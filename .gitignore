@@ -443,3 +443,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/Frontend/.angular/cache/19.2.12/pokemon
