@@ -11,7 +11,7 @@ public partial class Jugador
 
     public string? Avatar { get; set; }
 
-    public int IdCarta { get; set; }
+    public int? IdCarta { get; set; }
 
     public virtual Cartum IdCartaNavigation { get; set; } = null!;
 
