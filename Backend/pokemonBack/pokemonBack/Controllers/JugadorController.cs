@@ -98,7 +98,8 @@ namespace pokemonBack.Controllers
                 jugador.avatar = nombreArchivo;
                 _jugadorService.UpdateJugador(jugador);
 
-                return Ok(nombreArchivo);
+                Response.ContentType = "application/json";
+                return Ok(new { nombreArchivo });
             }
             catch (Exception ex)
             {

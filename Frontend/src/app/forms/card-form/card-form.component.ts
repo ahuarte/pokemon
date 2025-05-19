@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CardService } from '../../services/card.service';
 import { Card } from '../../model/card';
 import { ImageService } from '../../services/image.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-form',
@@ -14,7 +15,7 @@ export class CardFormComponent {
   cardForm: FormGroup = new FormGroup({});
   selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private cardService: CardService, private imageService: ImageService) { }
+  constructor(private fb: FormBuilder, private cardService: CardService, private imageService: ImageService, private route: Router) { }
 
   ngOnInit() {
     this.cardForm = this.fb.group({
@@ -75,6 +76,7 @@ export class CardFormComponent {
       this.imageService.uploadImage(formData).subscribe(response => {
         console.log('Image uploaded successfully', response);
 
+        this.route.navigate(['/']);
       }, error => {
         console.error('Error uploading image', error);
       });

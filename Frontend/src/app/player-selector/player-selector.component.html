@@ -1,0 +1,19 @@
+<div class="container my-5">
+    <div class="row mx-0">
+        <h1>Seleccionad un jugador</h1>
+
+    </div>
+    <div class="row mx-0 d-flex justify-content-between">
+        <div class="col">
+            <label for="player1">Jugador 1</label>
+            <select class="form-select" aria-label="Default select example">
+                @for(player of playerList; track $index){
+                    <option value="{{ player.id }}"><img src="https://localhost:7214/api/Values/jugadores/{{ player.avatar }}" alt=""> {{player.name}}</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>

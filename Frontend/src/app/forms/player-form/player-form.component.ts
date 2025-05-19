@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { PlayerService } from '../../services/player.service';
 import { Player } from '../../model/player';
 import { ImageService } from '../../services/image.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-form',
@@ -14,7 +15,7 @@ export class PlayerFormComponent {
   playerForm: FormGroup = new FormGroup({});
   selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private playerService: PlayerService, private imageService: ImageService) { }
+  constructor(private fb: FormBuilder, private playerService: PlayerService, private imageService: ImageService, private route: Router) { }
 
   ngOnInit() {
     this.playerForm = this.fb.group({
@@ -66,6 +67,7 @@ export class PlayerFormComponent {
       this.imageService.uploadAvatar(formData).subscribe(response => {
         console.log('Avatar uploaded successfully', response);
 
+        this.route.navigate(['/players']);
       }, error => {
         console.error('Error uploading avatar', error);
       });

@@ -95,7 +95,8 @@ namespace pokemonBack.Controllers
                 carta.image = nombreArchivo;
                 _cartasService.UpdateCarta(carta);
 
-                return Ok(nombreArchivo);
+                Response.ContentType = "application/json";
+                return Ok(new { nombreArchivo });
             }
             catch (Exception ex)
             {
