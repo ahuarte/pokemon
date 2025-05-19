@@ -12,9 +12,11 @@ namespace pokemonBack.Controllers
     public class CartasController : ControllerBase
     {
         public CartasService _cartasService;
-        public CartasController(CartaspokemonContext context)
+        private readonly IWebHostEnvironment _env;
+        public CartasController(CartasService cartasService, IWebHostEnvironment env)
         {
-            _cartasService = new CartasService(context);
+            _cartasService = cartasService;
+            _env = env;
         }
 
         // GET: api/<ValuesController>
@@ -53,6 +55,47 @@ namespace pokemonBack.Controllers
             try
             {
                 return Ok(_cartasService.AddCarta(carta));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("imagen")]
+        public async Task<IActionResult> PostImagen([FromForm] ImagenUploadDto dto)
+        {
+            try
+            {
+                if (dto.Imagen == null || dto.Imagen.Length == 0)
+                {
+                    return BadRequest("No se ha proporcionado ninguna imagen.");
+                }
+
+                var carpetaDestino = Path.Combine(_env.WebRootPath ?? "wwwroot", "imagenes");
+                if (!Directory.Exists(carpetaDestino))
+                {
+                    Directory.CreateDirectory(carpetaDestino);
+                }
+
+                var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(dto.Imagen.FileName);
+                var rutaCompleta = Path.Combine(carpetaDestino, nombreArchivo);
+
+                using (var stream = new FileStream(rutaCompleta, FileMode.Create))
+                {
+                    await dto.Imagen.CopyToAsync(stream);
+                }
+
+
+                var carta = _cartasService.GetCarta(dto.IdPokemon);
+                if (carta == null)
+                {
+                    return NotFound("Carta no encontrada.");
+                }
+
+                carta.image = nombreArchivo;
+                _cartasService.UpdateCarta(carta);
+
+                return Ok(nombreArchivo);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 using Entities.Entities;
 using Microsoft.EntityFrameworkCore;
+using Pokemon.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +24,13 @@ builder.Services.AddCors(options =>
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
-
+builder.Services.AddScoped<CartasService>();
 // Obtener la cadena de conexión
 
 
 var app = builder.Build();
 app.UseCors("AllowSpecificOrigin");
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
