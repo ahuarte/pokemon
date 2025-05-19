@@ -40,11 +40,11 @@ export class PlayerFormComponent {
       const player: Player = {
         id: 0,
         name: this.playerForm.value.name,
-        avatar: this.playerForm.value.img,
+        avatar: this.playerForm.value.avatar,
         idCard: null
       };
 
-      // Enviamos la carta al servicio
+      // Enviamos el jugador al servicio
       this.playerService.postPlayer(player).subscribe((response: number) => {
 
         this.uploadAvatar(response);

@@ -13,9 +13,9 @@
                     <tr>
                         <td>
                             @if(player.avatar != "string"){
-                                <img src="{{ player.avatar }}" alt="Avatar" class="avatar">
+                                <img src="https://localhost:7214/api/Values/jugadores/{{ player.avatar }}" alt="{{player.avatar}}" class="avatar" style="width: 30px; height: 30px;" class="img-fluid">
                             }@else {
-                                <img src="/icons/user.svg" alt="Avatar" style="width: 30px; height: 30px;">
+                                <img src="/icons/user.svg" alt="Avatar" style="width: 30px; height: 30px;" class="img-fluid">
                             }
                         </td>
                         <td>{{ player.name }}</td>

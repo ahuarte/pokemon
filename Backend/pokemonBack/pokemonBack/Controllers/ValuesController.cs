@@ -8,7 +8,7 @@ namespace pokemonBack.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        [HttpGet("{nombreArchivo}")]
+        [HttpGet("{nombreCarpeta}/{nombreArchivo}")]
         public IActionResult GetImagen(string nombreArchivo, string nombreCarpeta)
         {
             // Ruta completa al archivo en wwwroot/imagenes
