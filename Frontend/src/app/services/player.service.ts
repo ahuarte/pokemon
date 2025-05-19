@@ -16,7 +16,7 @@ export class PlayerService {
   }
 
   postPlayer(player: Player): Observable<Player> {
-    console.log('Player created successfully', player);
+    console.log('En el servicio ', player);
     return this.http.post<Player>(this.route, player);
   }
 }

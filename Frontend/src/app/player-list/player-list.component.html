@@ -4,15 +4,19 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">Nombre</th>
+                    <th class="w-25" scope="col">Avatar</th>
+                    <th class="w-75" scope="col">Nombre</th>
                 </tr>
             </thead>
             <tbody>
                 @for(player of players; track $index) {
                     <tr>
                         <td>
-                            <img src="{{ player.avatar }}" alt="Avatar" class="avatar">
+                            @if(player.avatar != "string"){
+                                <img src="{{ player.avatar }}" alt="Avatar" class="avatar">
+                            }@else {
+                                <img src="/icons/user.svg" alt="Avatar" style="width: 30px; height: 30px;">
+                            }
                         </td>
                         <td>{{ player.name }}</td>
                     </tr>
