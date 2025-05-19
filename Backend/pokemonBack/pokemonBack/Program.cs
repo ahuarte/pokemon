@@ -1,3 +1,6 @@
+using Entities.Entities;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +19,12 @@ builder.Services.AddCors(options =>
                         .AllowAnyHeader());
 });
 
+// Obtener la cadena de conexión
+var connectionString = builder.Configuration.GetConnectionString("Default");
+
+// Registrar el DbContext con la cadena de conexión
+builder.Services.AddDbContext<CartaspokemonContext>(options =>
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 app.UseCors("AllowSpecificOrigin");
