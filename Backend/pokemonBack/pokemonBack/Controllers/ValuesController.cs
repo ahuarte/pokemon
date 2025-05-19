@@ -9,10 +9,10 @@ namespace pokemonBack.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet("{nombreArchivo}")]
-        public IActionResult GetImagen(string nombreArchivo)
+        public IActionResult GetImagen(string nombreArchivo, string nombreCarpeta)
         {
             // Ruta completa al archivo en wwwroot/imagenes
-            var rutaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes", "pokemon");
+            var rutaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes", nombreCarpeta);
             var rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
 
             if (!System.IO.File.Exists(rutaArchivo))

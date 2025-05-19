@@ -12,8 +12,12 @@ namespace pokemonBack.Controllers
     public class JugadorController : ControllerBase
     {
         public JugadorService _jugadorService;
-        public JugadorController(CartaspokemonContext context) { 
+        private readonly IWebHostEnvironment _env;
+
+        public JugadorController(CartaspokemonContext context, IWebHostEnvironment env)
+        {
             _jugadorService = new JugadorService(context);
+            _env = env;
         }
         // GET: api/<JugadorController>
         [HttpGet]
@@ -60,10 +64,60 @@ namespace pokemonBack.Controllers
             }
         }
 
+        [HttpPost("imagen")]
+        public async Task<IActionResult> PostImagen([FromForm] ImagenUploadDto dto)
+        {
+            try
+            {
+                if (dto.Imagen == null || dto.Imagen.Length == 0)
+                {
+                    return BadRequest("No se ha proporcionado ninguna imagen.");
+                }
+
+                var carpetaDestino = Path.Combine(_env.WebRootPath ?? "wwwroot", "imagenes", "jugadores");
+                if (!Directory.Exists(carpetaDestino))
+                {
+                    Directory.CreateDirectory(carpetaDestino);
+                }
+
+                var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(dto.Imagen.FileName);
+                var rutaCompleta = Path.Combine(carpetaDestino, nombreArchivo);
+
+                using (var stream = new FileStream(rutaCompleta, FileMode.Create))
+                {
+                    await dto.Imagen.CopyToAsync(stream);
+                }
+
+
+                var jugador = _jugadorService.JugadorById(dto.IdPokemon);
+                if (jugador == null)
+                {
+                    return NotFound("Carta no encontrada.");
+                }
+
+                jugador.avatar = nombreArchivo;
+                _jugadorService.UpdateJugador(jugador);
+
+                return Ok(nombreArchivo);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         // PUT api/<JugadorController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] JugadorDto jugador)
         {
+            try
+            {
+                return Ok(_jugadorService.UpdateJugador(jugador));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE api/<JugadorController>/5

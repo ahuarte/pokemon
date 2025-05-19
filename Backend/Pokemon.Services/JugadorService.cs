@@ -36,5 +36,9 @@ namespace Pokemon.Services
         {
             return _JugadorRepository.JugadorPost(value);
         }
+        public int UpdateJugador(JugadorDto jugador)
+        {
+            return _JugadorRepository.UpdateJugador(jugador);
+        }
     }
 }

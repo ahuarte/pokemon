@@ -52,5 +52,17 @@ namespace Pokemon.Repositorys
             _context.SaveChanges();
             return jugadorPost;
         }
+        public int UpdateJugador(JugadorDto jugador)
+        {
+            var existingJugador = _context.Jugadors.Find(jugador.id);
+            if (existingJugador != null)
+            {
+                existingJugador.IdJugador = jugador.id;
+                existingJugador.NombreJugador = jugador.name;
+                existingJugador.Avatar = jugador.avatar;
+                _context.SaveChanges();
+            }
+            return existingJugador.IdJugador;
+        }
     }
 }

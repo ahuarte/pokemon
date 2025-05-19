@@ -15,8 +15,8 @@ export class PlayerService {
     return this.http.get<Player[]>(this.route);
   }
 
-  postPlayer(player: Player): Observable<Player> {
+  postPlayer(player: Player): Observable<number> {
     console.log('En el servicio ', player);
-    return this.http.post<Player>(this.route, player);
+    return this.http.post<number>(this.route, player);
   }
 }
