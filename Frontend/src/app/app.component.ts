@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PlayerFormComponent } from "./forms/player-form/player-form.component";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { CardFormComponent } from "./forms/card-form/card-form.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PlayerFormComponent, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, CardFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

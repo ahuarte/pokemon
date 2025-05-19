@@ -14,13 +14,13 @@ export class CardFormComponent {
   constructor(private fb: FormBuilder, private cardService: CardService) { }
 
   ngOnInit() {
-     this.cardForm = this.fb.group({
+    this.cardForm = this.fb.group({
       pokemonName: ['', Validators.required],
       pokemonType: ['', Validators.required],
-      hp: [null, [Validators.required, Validators.min(3), Validators.max(10)]],
-      damage: [null, [Validators.required, Validators.min(3), Validators.max(10)]],
-      defense: [null, [Validators.required, Validators.min(3), Validators.max(10)]],
-      ammo: [null, [Validators.required, Validators.min(3), Validators.max(10)]],
+      hp: [3, [Validators.required, Validators.min(3), Validators.max(10)]],
+      damage: [3, [Validators.required, Validators.min(3), Validators.max(10)]],
+      defense: [3, [Validators.required, Validators.min(3), Validators.max(10)]],
+      ammo: [3, [Validators.required, Validators.min(3), Validators.max(10)]],
       img: [null]
     });
   }

@@ -5,6 +5,11 @@
             <div class="mb-3">
                 <label for="pokemonName" class="form-label">Pokemon</label>
                 <input type="text" class="form-control" id="pokemonName" aria-describedby="pokemonName" formControlName="pokemonName">
+                @if(cardForm.get('pokemonName')?.touched && cardForm.get('pokemonName')?.invalid){
+                    <div class="text-danger">
+                        El nombre es obligatorio.
+                    </div>
+                }
             </div>
 
             <div class="mb-3">
@@ -19,26 +24,75 @@
                     <option value="lucha">Lucha</option>
                     <option value="psiquico">Psiquico</option>
                 </select>
+                @if(cardForm.get('pokemonType')?.touched && cardForm.get('pokemonType')?.invalid){
+                    <div class="text-danger">
+                        El tipo es obligatorio.
+                    </div>
+                }
             </div>
 
             <div class="mb-3">
                 <label for="hp" class="form-label">Puntos de Salud</label>
                 <input type="number" class="form-control" id="hp" aria-describedby="hp" min="3" max="10" formControlName="hp">
+                @if(cardForm.get('hp')?.touched && cardForm.get('hp')?.invalid){
+                    <div class="text-danger">
+                        Tienes que ingresar un valor para Puntos de Salud.
+                    </div>
+                }
+
+                @if(cardForm.get('hp')?.errors?.['min'] || cardForm.get('hp')?.errors?.['max']){
+                    <div class="text-danger">
+                        El valor debe estar entre 3 y 10.
+                    </div>
+                }
             </div>
 
             <div class="mb-3">
                 <label for="damage" class="form-label">Daño</label>
-                <input type="number" class="form-control" id="attack" aria-describedby="damage" min="3" max="10" formControlName="damage">
+                <input type="number" class="form-control" id="damage" aria-describedby="damage" min="3" max="10" formControlName="damage">
+                @if(cardForm.get('damage')?.touched && cardForm.get('damage')?.invalid){
+                    <div class="text-danger">
+                        Tienes que ingresar un valor para Daño.
+                    </div>
+                }
+                
+                @if(cardForm.get('damage')?.errors?.['min'] || cardForm.get('damage')?.errors?.['max']){
+                    <div class="text-danger">
+                        El valor debe estar entre 3 y 10.
+                    </div>
+                }
             </div>
 
             <div class="mb-3">
                 <label for="defense" class="form-label">Defensa</label>
                 <input type="number" class="form-control" id="defense" aria-describedby="defense" min="3" max="10" formControlName="defense">
+                @if(cardForm.get('defense')?.touched && cardForm.get('defense')?.invalid){
+                    <div class="text-danger">
+                        Tienes que ingresar un valor para Defensa.
+                    </div>
+                }
+                
+                @if(cardForm.get('defense')?.errors?.['min'] || cardForm.get('defense')?.errors?.['max']){
+                    <div class="text-danger">
+                        El valor debe estar entre 3 y 10.
+                    </div>
+                }
             </div>
 
             <div class="mb-3">
                 <label for="ammo" class="form-label">Munición</label>
                 <input type="number" class="form-control" id="ammo" aria-describedby="ammo" min="3" max="10" formControlName="ammo">
+                @if(cardForm.get('ammo')?.touched && cardForm.get('ammo')?.invalid){
+                    <div class="text-danger">
+                        Tienes que ingresar un valor para Munición.
+                    </div>
+                }
+                
+                @if(cardForm.get('ammo')?.errors?.['min'] || cardForm.get('ammo')?.errors?.['max']){
+                    <div class="text-danger">
+                        El valor debe estar entre 3 y 10.
+                    </div>
+                }
             </div>
             
             <div class="mb-3">
