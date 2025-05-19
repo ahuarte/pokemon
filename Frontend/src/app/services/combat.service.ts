@@ -23,10 +23,12 @@ export class CombatService {
 
   setPlayer1(player: CombatPlayer) {
     this.combat[0] = player;
+    console.log('Player 1 set:', player);
   }
 
   setPlayer2(player: CombatPlayer) {
     this.combat[1] = player;
+    console.log('Player 2 set:', player);
   }
 
   setPlayer1Card(card: Card) {

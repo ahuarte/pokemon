@@ -4,10 +4,10 @@
 
     </div>
     <div class="row mx-0 d-flex justify-content-between">
-        <!-- JUGADOR 1 -->
+        <!-- SELECTOR JUGADOR 1 -->
         <div class="col-4">
             <label for="player1">Jugador 1</label>
-            <mat-select placeholder="Selecciona un jugador">
+            <mat-select placeholder="Selecciona un jugador" [(ngModel)]="selectedPlayer1" (ngModelChange)="onPlayer1Change()">
                 @for(player of playerList; track $index){
                     <mat-option [value]="player.id">
                         <img
@@ -25,10 +25,10 @@
             <img src="vs.webp" alt="" style="width: 100px; height: 100px;"/>
         </div>
 
-        <!-- JUGADOR 2 -->
+        <!-- SELECTOR JUGADOR 2 -->
         <div class="col-4">
             <label for="player1">Jugador 2</label>
-            <mat-select placeholder="Selecciona un jugador">
+            <mat-select placeholder="Selecciona un jugador" [(ngModel)]="selectedPlayer2" (ngModelChange)="onPlayer2Change()">
                 @for(player of playerList; track $index){
                 <mat-option [value]="player.id">
                     <img [src]="'https://localhost:7214/api/Values/jugadores/' + player.avatar" alt="{{ player.name }}"
@@ -39,5 +39,7 @@
             </mat-select>
         </div>
     </div>
+
+    
 </div>
 
