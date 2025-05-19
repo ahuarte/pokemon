@@ -1,7 +1,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
         <h4 class="mb-4">Inserta tus datos de jugador</h4>
-        <form [formGroup]="playerForm">
+        <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">

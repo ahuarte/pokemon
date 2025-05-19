@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Card } from '../model/card';
 import { CardService } from '../services/card.service';
+import { PokemonCardComponent } from "../pokemon-card/pokemon-card.component";
 
 @Component({
   selector: 'app-card-list',
-  imports: [],
+  imports: [PokemonCardComponent],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.css'
 })

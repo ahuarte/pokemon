@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row mx-0">
+        <h1 class="text-center mb-4">Lista de jugadores</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Avatar</th>
+                    <th scope="col">Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(player of players; track $index) {
+                    <tr>
+                        <td>
+                            <img src="{{ player.avatar }}" alt="Avatar" class="avatar">
+                        </td>
+                        <td>{{ player.name }}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @for(player of players; track $index) {
+            
+        }
+    </div>
+</div>

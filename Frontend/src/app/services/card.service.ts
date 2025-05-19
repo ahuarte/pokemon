@@ -11,6 +11,9 @@ export class CardService {
 
   constructor(private http: HttpClient) { }
 
+  getCardById(id: number): Observable<Card> {
+    return this.http.get<Card>(`${this.route}/${id}`);
+  }
   getCards(): Observable<Card[]> {
     return this.http.get<Card[]>(this.route);
   }
