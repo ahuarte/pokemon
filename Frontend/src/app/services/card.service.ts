@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CardService {
-  route: string = 'http://localhost:3000/cards'; 
+  route: string = 'https://localhost:7214/api/Cartas'; 
 
   constructor(private http: HttpClient) { }
 
