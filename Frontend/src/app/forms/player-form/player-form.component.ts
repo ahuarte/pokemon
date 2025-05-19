@@ -45,9 +45,9 @@ export class PlayerFormComponent {
       };
 
       // Enviamos el jugador al servicio
-      this.playerService.postPlayer(player).subscribe((response: number) => {
+      this.playerService.postPlayer(player).subscribe((response: any) => {
 
-        this.uploadAvatar(response);
+        this.uploadAvatar(response.idJugador);
 
       }, error => {
         console.error('Error creating player', error);
