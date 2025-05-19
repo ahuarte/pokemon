@@ -12,7 +12,7 @@ namespace pokemonBack.Controllers
         public IActionResult GetImagen(string nombreArchivo)
         {
             // Ruta completa al archivo en wwwroot/imagenes
-            var rutaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes");
+            var rutaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes", "pokemon");
             var rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
 
             if (!System.IO.File.Exists(rutaArchivo))

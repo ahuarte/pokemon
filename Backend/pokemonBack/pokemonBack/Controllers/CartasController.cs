@@ -71,7 +71,7 @@ namespace pokemonBack.Controllers
                     return BadRequest("No se ha proporcionado ninguna imagen.");
                 }
 
-                var carpetaDestino = Path.Combine(_env.WebRootPath ?? "wwwroot", "imagenes");
+                var carpetaDestino = Path.Combine(_env.WebRootPath ?? "wwwroot", "imagenes", "pokemon");
                 if (!Directory.Exists(carpetaDestino))
                 {
                     Directory.CreateDirectory(carpetaDestino);
