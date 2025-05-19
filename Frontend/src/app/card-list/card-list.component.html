@@ -3,17 +3,7 @@
     <div class="row mx-0">
         @for (card of cards; track $index) {
             <div class="col-2">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <p>{{ card.name }}</p>
-                        <p>{{ card.hp }}ps</p>
-                    </div>
-                    <div class="card-body">
-                        <p>Damage: {{ card.attack }}</p>
-                        <p>Defense: {{ card.block }}</p>
-                        <p>Ammo: {{ card.ammo }}</p>
-                    </div>
-                </div>
+               <app-pokemon-card [cardId]="card.id"></app-pokemon-card>
             </div>
         }
     </div>

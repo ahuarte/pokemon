@@ -1,0 +1,16 @@
+@if(card){
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <p>{{ card.name }}</p>
+        <p>{{ card.hp }}ps</p>
+    </div>
+    <div class="card-body">
+        <img src="https://localhost:7214/api/Values/{{ card.image }}" alt="" class="img-fluid">
+        <p>Damage: {{ card.attack }}</p>
+        <p>Defense: {{ card.block }}</p>
+        <p>Ammo: {{ card.ammo }}</p>
+    </div>
+</div>
+} 
+ 
+                    
