@@ -1,0 +1,56 @@
+.resaltado {
+  position: relative;
+  animation: palpitar 1.5s infinite ease-in-out;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  filter: brightness(1.2);
+  cursor: default;
+}
+
+/* Hover: detener animación y agrandar */
+.resaltado:hover {
+  animation: none;
+  transform: scale(1.1);
+  filter: brightness(1.4);
+  cursor: pointer;
+}
+
+/* Efecto de brillo vertical con pseudo-elemento */
+.resaltado::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(255,255,255,0.2), rgba(255,255,255,0));
+  pointer-events: none;
+  animation: glowSweep 1.5s infinite ease-in-out;
+}
+
+/* Palpitar */
+@keyframes palpitar {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1.2);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.4);
+  }
+}
+
+/* Brillo que sube */
+@keyframes glowSweep {
+  0% {
+    top: 100%;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 0%;
+    opacity: 0;
+  }
+}

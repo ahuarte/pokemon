@@ -8,11 +8,13 @@ import { Card } from '../model/card';
 export class CombatService {
   combat: CombatPlayer[] = [
     {
+      id: 0,
       name: '',
       avatar: '',
       card: null,
     },
     {
+      id: 0,
       name: '',
       avatar: '',
       card: null,
@@ -41,5 +43,32 @@ export class CombatService {
     if(this.combat[1]) {
       this.combat[1].card = card;
     }
+  }
+
+  updateCardP1(card: Card){
+    this.combat[0].card = card;
+    console.log('Player 1 updated:', this.combat[0]);
+  }
+
+  updateCardP2(card: Card){
+    this.combat[1].card = card;
+    console.log('Player 2 updated:', this.combat[1]);
+  }
+
+  resetCombat(){
+    this.combat = [
+      {
+        id: 0,
+        name: '',
+        avatar: '',
+        card: null,
+      },
+      {
+        id: 0,
+        name: '',
+        avatar: '',
+        card: null,
+      }
+    ]
   }
 }

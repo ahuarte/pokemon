@@ -4,11 +4,12 @@ import { CardFormComponent } from './forms/card-form/card-form.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { PlayerSelectorComponent } from './player-selector/player-selector.component';
+import { StartGamePageComponent } from './pages/start-game-page/start-game-page.component';
 
 export const routes: Routes = [
     { path: 'players', component: PlayerListComponent },    
     { path: 'newCard', component: CardFormComponent },
     { path: 'newPlayer', component: PlayerFormComponent },    
-    { path: 'playerSelector', component: PlayerSelectorComponent },    
+    { path: 'startGame', component: StartGamePageComponent },    
     { path: '', component: CardListComponent },
 ];

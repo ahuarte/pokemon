@@ -3,11 +3,13 @@
         <h1>Seleccionad un jugador</h1>
 
     </div>
+
+    <!-- SELECCION DE JUGADORES -->
     <div class="row mx-0 d-flex justify-content-between">
-        <!-- SELECTOR JUGADOR 1 -->
+        <!-- JUGADOR 1 -->
         <div class="col-4">
             <label for="player1">Jugador 1</label>
-            <mat-select placeholder="Selecciona un jugador" [(ngModel)]="selectedPlayer1" (ngModelChange)="onPlayer1Change()">
+            <mat-select id="player1" placeholder="Selecciona un jugador" [(ngModel)]="selectedPlayer1" (ngModelChange)="onPlayer1Change()">
                 @for(player of playerList; track $index){
                     <mat-option [value]="player.id">
                         <img
@@ -21,14 +23,21 @@
             </mat-select>
         </div>
 
-        <div class="col-4 d-flex justify-content-center">
-            <img src="vs.webp" alt="" style="width: 100px; height: 100px;"/>
-        </div>
-
-        <!-- SELECTOR JUGADOR 2 -->
         <div class="col-4">
-            <label for="player1">Jugador 2</label>
-            <mat-select placeholder="Selecciona un jugador" [(ngModel)]="selectedPlayer2" (ngModelChange)="onPlayer2Change()">
+            <div class="d-flex justify-content-center">
+                <img src="vs.webp" alt="" style="width: 100px; height: 100px;" [ngClass]="{'resaltado': onBothCardsSelected()}"/>
+            </div>
+            
+            @if(onBothCardsSelected()){
+                <div class="d-flex justify-content-center"><p class="m-0">Pulsa aquí para empezar!</p></div>
+            }
+        </div>
+        
+
+        <!-- JUGADOR 2 -->
+        <div class="col-4">
+            <label for="player2">Jugador 2</label>
+            <mat-select id="player2" placeholder="Selecciona un jugador" [(ngModel)]="selectedPlayer2" (ngModelChange)="onPlayer2Change()">
                 @for(player of playerList; track $index){
                 <mat-option [value]="player.id">
                     <img [src]="'https://localhost:7214/api/Values/jugadores/' + player.avatar" alt="{{ player.name }}"
@@ -40,6 +49,42 @@
         </div>
     </div>
 
-    
+    <!-- SELECTOR DE CARTAS -->
+    <div class="row mx-0 d-flex justify-content-between">
+        <!-- CARTA J1 -->
+        @if(selectedPlayer1){
+            <div class="col-4">
+                <label for="card1">Carta J1</label>
+                <mat-select id="card1" placeholder="Selecciona un jugador" [(ngModel)]="selectedCard1" (ngModelChange)="onCard1Change()">
+                    @for(card of cardList; track $index){
+                        <mat-option [value]="card.id">
+                            <img
+                            [src]="'https://localhost:7214/api/Values/pokemon/' + card.image"
+                            alt="{{ card.name }}"
+                            style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;"
+                            />
+                            {{ card.name }}
+                        </mat-option>
+                    }
+                </mat-select>
+            </div>
+        }
+
+        <!-- CARTA J2 -->
+        @if(selectedPlayer2){
+            <div class="col-4">
+                <label for="card2">Carta J2</label>
+                <mat-select id="card2" placeholder="Selecciona un jugador" [(ngModel)]="selectedCard2" (ngModelChange)="onCard2Change()">
+                    @for(card of cardList; track $index){
+                    <mat-option [value]="card.id">
+                        <img [src]="'https://localhost:7214/api/Values/pokemon/' + card.image" alt="{{ card.name }}"
+                            style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;" />
+                        {{ card.name }}
+                    </mat-option>
+                    }
+                </mat-select>
+            </div>
+        }
+    </div>
 </div>
 
