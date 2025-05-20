@@ -10,17 +10,26 @@ import { PokemonCardComponent } from "../pokemon-card/pokemon-card.component";
   styleUrl: './combat.component.css'
 })
 export class CombatComponent {
+
   player1!: CombatPlayer;
   player2!: CombatPlayer;
 
-  constructor(private combatService: CombatService) {  }
+  turno: boolean = true;
+
+  constructor(private combatService: CombatService) { }
 
   ngOnInit() {
     this.setPlayers();
   }
 
-  setPlayers(){
-    this.player1 = this.combatService.combat[0];
-    this.player2 = this.combatService.combat[1];
+  setPlayers() {
+    this.player1 = this.combatService.combatPlayers[0];
+    this.player2 = this.combatService.combatPlayers[1];
+  }
+
+  attack() {
+    console.log("Jugador Atacante y Turno: " + this.turno)
+    this.combatService.attack(this.turno)
+    this.turno = !this.turno
   }
 }

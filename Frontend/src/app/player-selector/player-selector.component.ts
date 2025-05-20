@@ -88,7 +88,7 @@ export class PlayerSelectorComponent {
   }
 
   onBothCardsSelected(){
-    if(this.combatService.combat[0].card && this.combatService.combat[1].card) {
+    if(this.combatService.combatPlayers[0].card && this.combatService.combatPlayers[1].card) {
       return true;
     }
     return;
