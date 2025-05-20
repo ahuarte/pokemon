@@ -25,7 +25,7 @@
 
         <div class="col-4">
             <div class="d-flex justify-content-center">
-                <img src="vs.webp" alt="" style="width: 100px; height: 100px;" [ngClass]="{'resaltado': onBothCardsSelected()}"/>
+                <img src="vs.webp" alt="" style="width: 100px; height: 100px;" [ngClass]="{'resaltado': onBothCardsSelected()}" (click)="startGameEmitter()"/>
             </div>
             
             @if(onBothCardsSelected()){

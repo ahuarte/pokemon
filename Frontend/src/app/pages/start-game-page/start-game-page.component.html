@@ -1,2 +1,8 @@
-<app-player-selector></app-player-selector>
-<app-combat></app-combat>
+@if(combatStarted){
+    <app-combat></app-combat>
+}@else {
+    <app-player-selector (startCombatEmitter)="startGame()"></app-player-selector>
+}
+
+
+

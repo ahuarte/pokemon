@@ -9,5 +9,10 @@ import { CombatComponent } from '../../combat/combat.component';
   styleUrl: './start-game-page.component.css'
 })
 export class StartGamePageComponent {
+  combatStarted: boolean = false;
 
+  startGame() {
+    console.log('en receptor')
+    this.combatStarted = true;
+  }
 }

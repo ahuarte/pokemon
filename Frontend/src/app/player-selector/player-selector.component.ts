@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Player } from '../model/player';
 import { PlayerService } from '../services/player.service';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './player-selector.component.css'
 })
 export class PlayerSelectorComponent {
+  @Output() startCombatEmitter: EventEmitter<boolean> = new EventEmitter();
   playerList: Player[] = [];
   cardList: Card[] = [];
   selectedPlayer1: number = 0;
@@ -91,5 +92,15 @@ export class PlayerSelectorComponent {
       return true;
     }
     return;
+  }
+
+  startGameEmitter(){
+    if(this.onBothCardsSelected()){
+      console.log('en emisor')
+      this.startCombatEmitter.emit(true);
+    }else{
+      console.log('No has seleccionado ambas cartas');
+    }
+    
   }
 }
