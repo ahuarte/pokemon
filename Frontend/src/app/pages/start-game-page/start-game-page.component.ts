@@ -12,7 +12,6 @@ export class StartGamePageComponent {
   combatStarted: boolean = false;
 
   startGame() {
-    console.log('en receptor')
     this.combatStarted = true;
   }
 }

@@ -20,7 +20,6 @@ export class PlayerService {
   }
 
   postPlayer(player: Player): Observable<number> {
-    console.log('En el servicio ', player);
     return this.http.post<number>(this.route, player);
   }
 }

@@ -74,8 +74,6 @@ export class CardFormComponent {
       formData.append('IdPokemon', response.toString());
 
       this.imageService.uploadImage(formData).subscribe(response => {
-        console.log('Image uploaded successfully', response);
-
         this.route.navigate(['/']);
       }, error => {
         console.error('Error uploading image', error);

@@ -1,5 +1,6 @@
 using Entities.Entities;
 using Microsoft.EntityFrameworkCore;
+using Pokemon.Repositorys;
 using Pokemon.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,10 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddScoped<CartasService>();
 // Obtener la cadena de conexión
+
+builder.Services.AddScoped<CombateService>();
+builder.Services.AddScoped<JugadorService>();
+builder.Services.AddScoped<CombateRepository>();
 
 
 var app = builder.Build();

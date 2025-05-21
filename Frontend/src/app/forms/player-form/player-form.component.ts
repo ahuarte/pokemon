@@ -65,8 +65,6 @@ export class PlayerFormComponent {
       formData.append('idPokemon', response.toString());
 
       this.imageService.uploadAvatar(formData).subscribe(response => {
-        console.log('Avatar uploaded successfully', response);
-
         this.route.navigate(['/players']);
       }, error => {
         console.error('Error uploading avatar', error);

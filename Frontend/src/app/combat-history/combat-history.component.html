@@ -1,0 +1,27 @@
+<div class="container my-5">
+    <div class="row mx-0">
+        <h1 class="text-center mb-4">Historial de combate</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="w-25" scope="col">Turnos</th>
+                    <th class="w-25" scope="col">J1</th>
+                    <th class="w-25" scope="col">J2</th>
+                    <th class="w-25" scope="col">GANADOR!!!</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @for(game of combates; track $index) {
+                    <tr>
+                        <td>{{ game.turno }}</td>
+                        <td>{{ game.jugadores[0] }}</td>
+                        <td>{{ game.jugadores[1] }}</td>
+                        <td>{{ game.ganador }}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

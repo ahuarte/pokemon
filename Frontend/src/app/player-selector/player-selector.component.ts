@@ -49,26 +49,24 @@ export class PlayerSelectorComponent {
   }
 
   onPlayer1Change() {
-    console.log('Player 1 selected:', this.selectedPlayer1);
     this.playerService.getPlayerByid(this.selectedPlayer1).subscribe((data: Player) => {
       const player1: CombatPlayer = {
         id: data.id,
         name: data.name,
         avatar: data.avatar,
-        card: null
+        card: undefined
       }
       
       this.combatService.setPlayer1(player1);
     });
   }
   onPlayer2Change() {
-    console.log('Player 2 selected:', this.selectedPlayer2);
     this.playerService.getPlayerByid(this.selectedPlayer2).subscribe((data: Player) => {
       const player2: CombatPlayer = {
         id: data.id,
         name: data.name,
         avatar: data.avatar,
-        card: null
+        card: undefined
       }
       
       this.combatService.setPlayer2(player2);
@@ -96,7 +94,6 @@ export class PlayerSelectorComponent {
 
   startGameEmitter(){
     if(this.onBothCardsSelected()){
-      console.log('en emisor')
       this.startCombatEmitter.emit(true);
     }else{
       console.log('No has seleccionado ambas cartas');

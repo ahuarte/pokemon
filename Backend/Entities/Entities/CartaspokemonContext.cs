@@ -6,6 +6,9 @@ namespace Entities.Entities;
 
 public partial class CartaspokemonContext : DbContext
 {
+    public CartaspokemonContext()
+    {
+    }
 
     public CartaspokemonContext(DbContextOptions<CartaspokemonContext> options)
         : base(options)
@@ -18,6 +21,7 @@ public partial class CartaspokemonContext : DbContext
 
     public virtual DbSet<Jugador> Jugadors { get; set; }
 
+    public virtual DbSet<JugadorCombate> JugadorCombates { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,24 +63,6 @@ public partial class CartaspokemonContext : DbContext
                 .HasDefaultValue(1)
                 .HasColumnName("TURNO");
 
-            entity.HasMany(d => d.IdJugadors).WithMany(p => p.IdCombates)
-                .UsingEntity<Dictionary<string, object>>(
-                    "JugadorCombate",
-                    r => r.HasOne<Jugador>().WithMany()
-                        .HasForeignKey("IdJugador")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_JUGADOR_COMBATE"),
-                    l => l.HasOne<Combate>().WithMany()
-                        .HasForeignKey("IdCombate")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_COMBATE"),
-                    j =>
-                    {
-                        j.HasKey("IdCombate", "IdJugador");
-                        j.ToTable("JUGADOR_COMBATE");
-                        j.IndexerProperty<int>("IdCombate").HasColumnName("ID_COMBATE");
-                        j.IndexerProperty<int>("IdJugador").HasColumnName("ID_JUGADOR");
-                    });
         });
 
         modelBuilder.Entity<Jugador>(entity =>
@@ -98,6 +84,31 @@ public partial class CartaspokemonContext : DbContext
                 .HasForeignKey(d => d.IdCarta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_JUGADOR_CARTA");
+        });
+        modelBuilder.Entity<JugadorCombate>(jc =>
+        {
+            jc.ToTable("JUGADOR_COMBATE");
+
+            jc.HasKey(x => new { x.IdCombate, x.IdJugador })
+              .HasName("PK_JUGADOR_COMBATE");
+
+            jc.Property(x => x.IdCombate).HasColumnName("ID_COMBATE");
+            jc.Property(x => x.IdJugador).HasColumnName("ID_JUGADOR");
+            jc.Property(x => x.Ganador)
+              .HasColumnName("GANADOR")
+              .HasDefaultValue(false);
+
+            jc.HasOne(x => x.Combate)
+              .WithMany(c => c.JugadorCombates)
+              .HasForeignKey(x => x.IdCombate)
+              .OnDelete(DeleteBehavior.ClientSetNull)
+              .HasConstraintName("FK_COMBATE");
+
+            jc.HasOne(x => x.Jugador)
+              .WithMany(j => j.JugadorCombates)
+              .HasForeignKey(x => x.IdJugador)
+              .OnDelete(DeleteBehavior.ClientSetNull)
+              .HasConstraintName("FK_JUGADOR_COMBATE");
         });
 
         OnModelCreatingPartial(modelBuilder);

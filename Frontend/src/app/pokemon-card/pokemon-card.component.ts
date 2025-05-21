@@ -10,18 +10,20 @@ import { Card } from '../model/card';
 })
 export class PokemonCardComponent {
   @Input() cardId: number = 0;
-  card: Card | undefined
+  @Input() card: Card | undefined;
 
   constructor(private cardService: CardService){}
 
   ngOnInit() {
-    this.cardService.getCardById(this.cardId).subscribe({
-      next: (card) => {
-        this.card = card;
-      },
-      error: (error) => {
-        console.error('Error fetching card:', error);
-      }
-    });
+    if (this.cardId!=0) {
+      this.cardService.getCardById(this.cardId).subscribe({
+        next: (card) => {
+          this.card = card;
+        },
+        error: (error) => {
+          console.error('Error fetching card:', error);
+        }
+      });  
+    }
   }
 }

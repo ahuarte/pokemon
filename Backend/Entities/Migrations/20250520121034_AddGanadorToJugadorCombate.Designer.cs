@@ -3,6 +3,7 @@ using Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entities.Migrations
 {
     [DbContext(typeof(CartaspokemonContext))]
-    partial class CartaspokemonContextModelSnapshot : ModelSnapshot
+    [Migration("20250520121034_AddGanadorToJugadorCombate")]
+    partial class AddGanadorToJugadorCombate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,6 +83,9 @@ namespace Entities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCombate"));
 
+                    b.Property<int?>("JugadorIdJugador")
+                        .HasColumnType("int");
+
                     b.Property<int>("Turno")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -88,6 +94,8 @@ namespace Entities.Migrations
 
                     b.HasKey("IdCombate")
                         .HasName("PK__COMBATE__E380D5BA4CC296F3");
+
+                    b.HasIndex("JugadorIdJugador");
 
                     b.ToTable("COMBATE", (string)null);
                 });
@@ -148,6 +156,13 @@ namespace Entities.Migrations
                     b.ToTable("JUGADOR_COMBATE", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Entities.Combate", b =>
+                {
+                    b.HasOne("Entities.Entities.Jugador", null)
+                        .WithMany("IdCombates")
+                        .HasForeignKey("JugadorIdJugador");
+                });
+
             modelBuilder.Entity("Entities.Entities.Jugador", b =>
                 {
                     b.HasOne("Entities.Entities.Cartum", "IdCartaNavigation")
@@ -189,6 +204,8 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Entities.Jugador", b =>
                 {
+                    b.Navigation("IdCombates");
+
                     b.Navigation("JugadorCombates");
                 });
 #pragma warning restore 612, 618

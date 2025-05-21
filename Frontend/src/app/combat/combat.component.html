@@ -13,31 +13,32 @@
         <div class="row d-flex justify-content-between">
             <div class="col-4">
                 @if(player1.card){
-                    <app-pokemon-card [cardId]="player1.card.id"></app-pokemon-card>
+                    <app-pokemon-card [card]="combatService.combatPlayers[0].card"></app-pokemon-card>
                 }
                 
             </div>
             @if (turno) {
             <div class="col-2 d-flex flex-column justify-content-center">
                 <button class="btn btn-outline-danger mb-2" (click)="attack()">Atacar</button>
-                <button class="btn btn-outline-primary mb-2">Defender</button>
-                <button class="btn btn-outline-success">Recargar</button>
+                <button class="btn btn-outline-primary mb-2" (click)="defend()">Defender</button>
+                <button class="btn btn-outline-success" (click)="reload()">Recargar</button>
             </div>
             <div class="col-2"></div>
             }@else {
             <div class="col-2"></div>
             <div class="col-2 d-flex flex-column justify-content-center">
                 <button class="btn btn-outline-danger mb-2" (click)="attack()">Atacar</button>
-                <button class="btn btn-outline-primary mb-2">Defender</button>
-                <button class="btn btn-outline-success">Recargar</button>
+                <button class="btn btn-outline-primary mb-2" (click)="defend()">Defender</button>
+                <button class="btn btn-outline-success" (click)="reload()">Recargar</button>
             </div>
             }
             <div class="col-4">
                 @if(player2.card){
-                    <app-pokemon-card [cardId]="player2.card.id"></app-pokemon-card>
+                    <app-pokemon-card [card]="combatService.combatPlayers[1].card"></app-pokemon-card>
                 }
             </div>
         </div>
     </div>
 }
 
+<app-confirmation-modal [idModal]="'finalizar'" [title]="'Ganador'" [message]="'El jugador 1 ha ganado'" (confirmEvent)="finalizarCombate()"></app-confirmation-modal>
